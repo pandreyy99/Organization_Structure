@@ -1,0 +1,7 @@
+id,firstName,lastName,age,job,salariuNet,departmentId,departmentName
+1,Mohamed,Ahmed,25,Software Dev,1200.0,1,IT
+2,Said,Sara,23,Front-End Dev,1188.0,1,IT
+3,Hassan,Ali,24,Back-End Dev,1500.0,1,IT
+4,Karim,Sama,20,Full-stack Dev,1800.0,1,IT
+5,Mohamed,Khaled,22,Driver,720.0,2,Delivery
+6,Sarhan,Ghada,21,Secretary,1200.0,3,Administration
