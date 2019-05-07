@@ -1,5 +1,6 @@
 package services;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -22,24 +23,29 @@ public class auditServices {
     private static FileWriter fileWriter = null;
 
     static {
-        try {
-            fileWriter = new FileWriter(String.valueOf(path), true);
-
-            //Write the CSV file header
-            fileWriter.append(FILE_HEADER.toString());
-
-            //Add a new line separator after the header
-            fileWriter.append(NEW_LINE_SEPARATOR);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
+        boolean exist = false;
+        if (new File(String.valueOf(path)).exists())
+            exist = true;
+        if (!exist) {
             try {
-                fileWriter.flush();
-                fileWriter.close();
+                fileWriter = new FileWriter(String.valueOf(path), true);
+
+                //Write the CSV file header
+                fileWriter.append(FILE_HEADER.toString());
+
+                //Add a new line separator after the header
+                fileWriter.append(NEW_LINE_SEPARATOR);
+
             } catch (IOException e) {
-                System.out.println("Error while flushing/closing Audit fileWriter !!!");
                 e.printStackTrace();
+            } finally {
+                try {
+                    fileWriter.flush();
+                    fileWriter.close();
+                } catch (IOException e) {
+                    System.out.println("Error while flushing/closing Audit fileWriter !!!");
+                    e.printStackTrace();
+                }
             }
         }
     }
